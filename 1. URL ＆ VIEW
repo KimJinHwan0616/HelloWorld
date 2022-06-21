@@ -1,0 +1,46 @@
+## 앱
++ 생성(터미널 -> Command Prompt)
+    ```angular2html
+    django-admin startapp 앱_이름
+    ```
+
++ config/urls.py : URL & 뷰 함수 매핑
+    ```angular2html
+    from django.contrib import admin
+    from django.urls import include, path
+
+    urlpatterns = [
+        path('admin/', admin.site.urls),
+        path('', include('앱_이름'.urls')),
+    ]
+    ```
+
++ config/setting.py
+    ```angular2html
+    INSTALLED_APPS = [
+        'django.contrib.admin',
+        'django.contrib.auth',
+        'django.contrib.contenttypes',
+        'django.contrib.sessions',
+        'django.contrib.messages',
+        'django.contrib.staticfiles',
+        '앱_이름.apps.앱_이름(첫글자 대문자)Config',
+    ]
+    ```
++ 앱_이름/urls.py 생성
+    ```angular2html
+    from django.urls import path
+    from . import views
+
+    urlpatterns = [
+        path('', views.index, name='index')
+    ]
+    ```
+
++ 앱_이름/views.py
+    ```angular2html
+    from django.http import HttpResponse
+
+    def index(request):
+    return HttpResponse("HTML 코드")
+    ```
